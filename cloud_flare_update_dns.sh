@@ -7,7 +7,7 @@ IP_ADDRESS=$(curl -s ifconfig.co/)
 UPDATE_STATUS="$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$CLOUD_FLARE_ZONE_ID/dns_records/$CLOUD_FLARE_RECORD_ID" \
      -H "Authorization: Bearer $CLOUD_FLARE_API_TOKEN" \
      -H "Content-Type: application/json" \
-     --data '{"type":"A","name":"'"$CLOUD_FLARE_HOSTNAME"'","content":"'"$IP_ADDRESS"'","ttl":1,"proxied":true}')"
+     --data '{"type":"A","name":"'"$CLOUD_FLARE_HOSTNAME"'","content":"'"$IP_ADDRESS"'","ttl":1,"proxied":false}')"
 
 SUCCESS_MESSAGE=$(echo "$UPDATE_STATUS" | jq -r '.success')
 
